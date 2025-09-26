@@ -1,14 +1,13 @@
 'use client'
 
 import { useState } from 'react'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, Facebook, Instagram, Mail } from 'lucide-react'
 
 const navigation = [
   { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Shows', href: '#shows' },
   { name: 'Gallery', href: '#gallery' },
-  { name: 'Contact', href: '#contact' },
 ]
 
 export function Navigation() {
@@ -25,10 +24,10 @@ export function Navigation() {
     <nav className="fixed top-0 w-full bg-black/20 backdrop-blur-sm z-50">
       <div className="mx-auto max-w-7xl px-6 lg:px-8">
         <div className="flex h-16 items-center justify-between">
-          {/* Logo */}
+          {/* Logo - Far Left */}
           <div className="flex items-center">
-            <a 
-              href="#home" 
+            <a
+              href="#home"
               onClick={(e) => handleClick(e, '#home')}
               className="text-2xl font-semibold tracking-wide text-white/90 uppercase"
             >
@@ -36,8 +35,8 @@ export function Navigation() {
             </a>
           </div>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:block">
+          {/* Centered Navigation - Desktop */}
+          <div className="hidden md:block absolute left-1/2 transform -translate-x-1/2">
             <div className="flex items-center space-x-8">
               {navigation.map((item) => (
                 <a
@@ -50,6 +49,30 @@ export function Navigation() {
                 </a>
               ))}
             </div>
+          </div>
+
+          {/* Social Icons - Far Right Desktop */}
+          <div className="hidden md:flex items-center space-x-4">
+            <a
+              href="https://www.facebook.com/SoftMadChildren"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-white/60 hover:text-white/90 transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+            >
+              <Facebook className="h-5 w-5" />
+            </a>
+            <a
+              href="#"
+              className="text-white/60 hover:text-white/90 transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+            >
+              <Instagram className="h-5 w-5" />
+            </a>
+            <a
+              href="mailto:contact@softmadchildren.com"
+              className="text-white/60 hover:text-white/90 transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+            >
+              <Mail className="h-5 w-5" />
+            </a>
           </div>
 
           {/* Mobile menu button */}
@@ -83,6 +106,30 @@ export function Navigation() {
                 {item.name}
               </a>
             ))}
+
+            {/* Mobile Social Icons */}
+            <div className="flex items-center justify-center space-x-6 pt-4 border-t border-white/10">
+              <a
+                href="https://www.facebook.com/SoftMadChildren"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-white/60 hover:text-white/90 transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+              >
+                <Facebook className="h-6 w-6" />
+              </a>
+              <a
+                href="#"
+                className="text-white/60 hover:text-white/90 transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a
+                href="mailto:contact@softmadchildren.com"
+                className="text-white/60 hover:text-white/90 transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+              >
+                <Mail className="h-6 w-6" />
+              </a>
+            </div>
           </div>
         </div>
       )}

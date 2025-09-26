@@ -15,7 +15,14 @@ export default function Home() {
   
   // Gallery images - add your image filenames here
   const galleryImages = [
-    'soft-mad-children-band.jpg',
+    'soft-mad-children-band-1.jpg',
+    'soft-mad-children-band-2.jpg',
+    'soft-mad-children-band-3.jpg',
+    'soft-mad-children-band-4.jpg',
+    'soft-mad-children-band-5.jpg',
+    'soft-mad-children-band-6.jpg',
+    'soft-mad-children-band-7.jpg',
+    'soft-mad-children-band-8.jpg',
   ]
 
   return (
@@ -441,51 +448,55 @@ export default function Home() {
 
       {/* Gallery Section */}
       <section id="gallery" className="relative overflow-hidden">
-        {/* Darker, more atmospheric background */}
-        <div className="absolute inset-0 bg-gradient-to-b from-[#5D3A1A] via-[#B85C2C] to-[#D97934]"></div>
-        
-        {/* Subtle fog layers */}
-        <motion.div 
-          className="absolute inset-0 opacity-30"
+        {/* Much darker, more atmospheric background */}
+        <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A] via-[#2D1810] to-[#0F0F0F]"></div>
+
+        {/* Enhanced dark fog layers */}
+        <motion.div
+          className="absolute inset-0 opacity-40"
           style={{
-            background: `radial-gradient(ellipse 1200px 600px at 50% 50%, rgba(184, 92, 44, 0.4) 0%, transparent 70%)`,
-            filter: 'blur(80px)',
+            background: `radial-gradient(ellipse 1400px 700px at 50% 50%, rgba(45, 24, 16, 0.6) 0%, transparent 70%)`,
+            filter: 'blur(100px)',
           }}
-          animate={{ 
-            x: ["-20%", "20%", "-20%"],
-            y: ["0%", "-10%", "0%"],
+          animate={{
+            x: ["-30%", "30%", "-30%"],
+            y: ["0%", "-15%", "0%"],
           }}
-          transition={{ duration: 60, repeat: Infinity, ease: "easeInOut" }}
+          transition={{ duration: 80, repeat: Infinity, ease: "easeInOut" }}
         />
-        
-        {/* Gentle embers floating */}
-        {[...Array(5)].map((_, i) => (
+
+        {/* Additional dark overlays */}
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-transparent to-orange-950/30"></div>
+
+        {/* Enhanced ember effects */}
+        {[...Array(8)].map((_, i) => (
           <motion.div
             key={`ember-gallery-${i}`}
             className="absolute rounded-full"
             style={{
-              width: '4px',
-              height: '4px',
-              left: `${20 + i * 15}%`,
-              bottom: '10%',
-              background: `radial-gradient(circle, rgba(217, 121, 52, 0.9) 0%, rgba(255, 107, 53, 0.6) 40%, transparent 70%)`,
-              boxShadow: '0 0 8px rgba(217, 121, 52, 0.8), 0 0 16px rgba(255, 107, 53, 0.4)',
+              width: '3px',
+              height: '3px',
+              left: `${15 + i * 10}%`,
+              bottom: '8%',
+              background: `radial-gradient(circle, rgba(184, 92, 44, 0.8) 0%, rgba(217, 121, 52, 0.5) 40%, transparent 70%)`,
+              boxShadow: '0 0 6px rgba(184, 92, 44, 0.7), 0 0 12px rgba(217, 121, 52, 0.3)',
             }}
             animate={{
-              y: [0, -600],
-              x: [0, Math.sin(i) * 40],
-              opacity: [0, 0.8, 0.6, 0],
-              scale: [0.8, 1.2, 0.8],
+              y: [0, -700],
+              x: [0, Math.sin(i + 1) * 50],
+              opacity: [0, 0.7, 0.5, 0],
+              scale: [0.7, 1.1, 0.7],
             }}
             transition={{
-              duration: 20 + i * 3,
+              duration: 25 + i * 4,
               ease: "easeOut",
               repeat: Infinity,
-              delay: i * 2,
+              delay: i * 2.5,
             }}
           />
         ))}
-        
+
         <div className="relative z-10 py-20">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -493,142 +504,65 @@ export default function Home() {
             transition={{ duration: 1 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-6xl font-light tracking-widest text-white uppercase mb-16 text-center" style={{ 
+            <h2 className="text-4xl md:text-6xl font-light tracking-widest text-white uppercase mb-16 text-center" style={{
               textShadow: '0 3px 6px rgba(0, 0, 0, 0.95), 0 6px 12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.7)',
               WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
             }}>
               Gallery
             </h2>
-            
-            {/* Single centered portrait image */}
-            <div className="flex justify-center max-w-4xl mx-auto px-6">
-              {galleryImages.map((image, i) => (
-                <motion.div
-                  key={i}
-                  className="relative overflow-hidden group cursor-pointer w-full md:w-[60%]"
-                  initial={{ opacity: 0, y: 50 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.8 }}
-                  viewport={{ once: true, margin: "-100px" }}
-                  onClick={() => setSelectedImage(`/gallery/${image}`)}
-                >
-                  {/* Portrait-oriented image container */}
-                  <div className="relative aspect-[3/4] md:aspect-[3/4] overflow-hidden rounded-lg">
-                    <Image
-                      src={`/gallery/${image}`}
-                      alt={`Gallery image ${i + 1}`}
-                      fill
-                      className="object-cover transition-all duration-700 group-hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 60vw"
-                    />
-                    
-                    {/* Subtle gradient overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-                    
-                    {/* View indicator on hover */}
-                    <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                      <div className="bg-black/70 backdrop-blur-sm px-6 py-3 rounded-full">
-                        <p className="text-white text-lg font-light tracking-wider">View</p>
+
+            {/* 8 image grid layout */}
+            <div className="max-w-7xl mx-auto px-6">
+              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+                {galleryImages.map((image, i) => (
+                  <motion.div
+                    key={i}
+                    className="relative overflow-hidden group cursor-pointer"
+                    initial={{ opacity: 0, y: 50 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: i * 0.1 }}
+                    viewport={{ once: true, margin: "-100px" }}
+                    onClick={() => setSelectedImage(`/gallery/${image}`)}
+                  >
+                    {/* Square aspect ratio for grid consistency */}
+                    <div className="relative aspect-square overflow-hidden rounded-lg">
+                      <Image
+                        src={`/gallery/${image}`}
+                        alt={`Gallery image ${i + 1}`}
+                        fill
+                        className="object-cover transition-all duration-700 group-hover:scale-110"
+                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                      />
+
+                      {/* Dark gradient overlay on hover */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                      {/* View indicator on hover */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full">
+                          <p className="text-white text-sm font-light tracking-wider">View</p>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                  
-                  {/* Subtle glow effect on hover */}
-                  <motion.div
-                    className="absolute -inset-4 rounded-lg opacity-0 group-hover:opacity-100 -z-10"
-                    style={{
-                      background: `radial-gradient(circle at 50% 50%, rgba(217, 121, 52, 0.2) 0%, transparent 60%)`,
-                      filter: 'blur(40px)',
-                    }}
-                    transition={{ duration: 0.5 }}
-                  />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
 
-
-      {/* Contact Section */}
-      <section id="contact" className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden">
-        {/* Light tan background - fifth color from palette */}
-        <div className="absolute inset-0" style={{ backgroundColor: 'var(--color-light-tan)' }}></div>
-        
-        {/* Multiple gradient layers for depth */}
-        <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-[#C5916D]/0 via-[#2C3E3A]/40 to-transparent"></div>
-        
-        {/* 70's Melting Wave Effect */}
-        <motion.div 
-          className="absolute inset-0 opacity-40"
-          style={{
-            backgroundImage: `
-              radial-gradient(ellipse 800px 400px at 50% 0%, #FF6B3530 0%, transparent 50%),
-              radial-gradient(ellipse 600px 300px at 0% 50%, #C1272D30 0%, transparent 50%),
-              radial-gradient(ellipse 700px 350px at 100% 50%, #F7931E30 0%, transparent 50%),
-              radial-gradient(ellipse 900px 450px at 50% 100%, #8B451330 0%, transparent 50%)
-            `,
-            filter: 'blur(30px)',
-          }}
-          animate={{ 
-            scale: [1, 1.1, 0.95, 1.05, 1],
-            rotate: [0, 5, -5, 3, 0]
-          }}
-          transition={{ duration: 15, repeat: Infinity, ease: "easeInOut" }}
-        />
-        
-        {/* Film Grain Overlay */}
-        <div 
-          className="absolute inset-0 opacity-20 mix-blend-overlay"
-          style={{
-            backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.5'/%3E%3C/svg%3E")`,
-          }}
-        />
-        
-        <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 1 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl md:text-6xl font-light tracking-widest text-white uppercase mb-12" style={{ 
-              textShadow: '0 3px 6px rgba(0, 0, 0, 0.95), 0 6px 12px rgba(0, 0, 0, 0.8), 0 0 30px rgba(0, 0, 0, 0.7)',
-              WebkitTextStroke: '0.5px rgba(255, 255, 255, 0.3)'
-            }}>
-              Contact
-            </h2>
-            <div className="space-y-4 text-white">
-              <p className="text-lg font-light" style={{ 
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.7)' 
-              }}>For bookings and inquiries</p>
-              <a href="mailto:contact@softmadchildren.com" className="text-xl hover:text-white transition-all duration-500 inline-block px-4 py-2 rounded-lg hover:bg-emerald-950/50 hover:shadow-lg hover:shadow-emerald-950/50 backdrop-blur-sm font-medium" style={{ 
-                textShadow: '0 2px 4px rgba(0, 0, 0, 0.95), 0 4px 8px rgba(0, 0, 0, 0.8)' 
-              }}>
-                contact@softmadchildren.com
-              </a>
-              <div className="flex justify-center space-x-8 mt-12">
-                <a href="https://www.facebook.com/SoftMadChildren" target="_blank" rel="noopener noreferrer" className="flex items-center gap-2 hover:text-white transition-all duration-500 px-3 py-1 rounded-lg hover:bg-emerald-950/40 backdrop-blur-sm font-light" style={{
-                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.7)'
-                }}>
-                  <Facebook className="h-5 w-5" />
-                  <span>Facebook</span>
-                </a>
-                <a href="#" className="hover:text-white transition-all duration-500 px-3 py-1 rounded-lg hover:bg-emerald-950/40 backdrop-blur-sm font-light" style={{
-                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.7)'
-                }}>Instagram</a>
-                <a href="#" className="hover:text-white transition-all duration-500 px-3 py-1 rounded-lg hover:bg-emerald-950/40 backdrop-blur-sm font-light" style={{
-                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.7)'
-                }}>Spotify</a>
-                <a href="#" className="hover:text-white transition-all duration-500 px-3 py-1 rounded-lg hover:bg-emerald-950/40 backdrop-blur-sm font-light" style={{
-                  textShadow: '0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.7)'
-                }}>YouTube</a>
+                    {/* Enhanced glow effect on hover */}
+                    <motion.div
+                      className="absolute -inset-2 rounded-lg opacity-0 group-hover:opacity-100 -z-10"
+                      style={{
+                        background: `radial-gradient(circle at 50% 50%, rgba(184, 92, 44, 0.3) 0%, transparent 60%)`,
+                        filter: 'blur(20px)',
+                      }}
+                      transition={{ duration: 0.5 }}
+                    />
+                  </motion.div>
+                ))}
               </div>
             </div>
           </motion.div>
         </div>
       </section>
+
+
       
       {/* Lightbox Modal */}
       <AnimatePresence>
