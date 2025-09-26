@@ -4,7 +4,6 @@ import { useState } from 'react'
 import { Menu, X, Facebook, Instagram, Mail } from 'lucide-react'
 
 const navigation = [
-  { name: 'Home', href: '#home' },
   { name: 'About', href: '#about' },
   { name: 'Shows', href: '#shows' },
   { name: 'Gallery', href: '#gallery' },

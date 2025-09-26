@@ -226,14 +226,16 @@ export default function Home() {
         
         {/* Hero content */}
         <div className="relative z-10 min-h-screen flex flex-col items-center justify-center">
-          <motion.div 
+          <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ 
-              duration: 2.5, 
+            whileHover={{ scale: 1.05 }}
+            transition={{
+              duration: 2.5,
               delay: 0.5,
-              ease: [0.25, 0.1, 0.25, 1]
+              ease: [0.25, 0.1, 0.25, 1],
+              scale: { duration: 1.2, ease: "easeInOut" }
             }}
           >
             <motion.h1 
