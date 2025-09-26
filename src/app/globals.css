@@ -432,8 +432,8 @@ section {
   z-index: 2;
 }
 
-/* Gallery to Video transition */
-#gallery::after {
+/* Gallery to Video transition - DISABLED to prevent visual artifacts */
+/* #gallery::after {
   content: '';
   position: absolute;
   bottom: -300px;
@@ -449,7 +449,7 @@ section {
   );
   pointer-events: none;
   z-index: 2;
-}
+} */
 
 /* Video to Contact transition */
 #video::after {

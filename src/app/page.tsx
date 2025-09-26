@@ -467,25 +467,25 @@ export default function Home() {
 
         {/* Additional dark overlays */}
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/60"></div>
-        <div className="absolute inset-0 bg-gradient-to-br from-amber-950/20 via-transparent to-orange-950/30"></div>
+        <div className="absolute inset-0 bg-gradient-to-br from-gray-950/30 via-transparent to-slate-950/40"></div>
 
-        {/* Enhanced ember effects */}
+        {/* Enhanced atmospheric particles */}
         {[...Array(8)].map((_, i) => (
           <motion.div
-            key={`ember-gallery-${i}`}
+            key={`particle-gallery-${i}`}
             className="absolute rounded-full"
             style={{
-              width: '3px',
-              height: '3px',
+              width: '2px',
+              height: '2px',
               left: `${15 + i * 10}%`,
               bottom: '8%',
-              background: `radial-gradient(circle, rgba(184, 92, 44, 0.8) 0%, rgba(217, 121, 52, 0.5) 40%, transparent 70%)`,
-              boxShadow: '0 0 6px rgba(184, 92, 44, 0.7), 0 0 12px rgba(217, 121, 52, 0.3)',
+              background: `radial-gradient(circle, rgba(200, 200, 200, 0.6) 0%, rgba(150, 150, 150, 0.3) 40%, transparent 70%)`,
+              boxShadow: '0 0 4px rgba(200, 200, 200, 0.5), 0 0 8px rgba(150, 150, 150, 0.2)',
             }}
             animate={{
               y: [0, -700],
               x: [0, Math.sin(i + 1) * 50],
-              opacity: [0, 0.7, 0.5, 0],
+              opacity: [0, 0.6, 0.4, 0],
               scale: [0.7, 1.1, 0.7],
             }}
             transition={{
@@ -511,49 +511,115 @@ export default function Home() {
               Gallery
             </h2>
 
-            {/* 8 image grid layout */}
-            <div className="max-w-7xl mx-auto px-6">
-              <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6">
+            {/* 8 image grid layout - 4x2 for desktop, responsive for mobile */}
+            <div className="max-w-8xl mx-auto px-4 sm:px-6 lg:px-8">
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 lg:gap-8">
                 {galleryImages.map((image, i) => (
                   <motion.div
                     key={i}
-                    className="relative overflow-hidden group cursor-pointer"
+                    className="relative overflow-hidden cursor-pointer"
                     initial={{ opacity: 0, y: 50 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: i * 0.1 }}
                     viewport={{ once: true, margin: "-100px" }}
+                    whileHover={{
+                      scale: 1.05,
+                      rotateX: 2,
+                      rotateY: 2,
+                      z: 50
+                    }}
+                    whileTap={{ scale: 0.98 }}
                     onClick={() => setSelectedImage(`/gallery/${image}`)}
+                    style={{ transformStyle: "preserve-3d" }}
                   >
-                    {/* Square aspect ratio for grid consistency */}
-                    <div className="relative aspect-square overflow-hidden rounded-lg">
-                      <Image
-                        src={`/gallery/${image}`}
-                        alt={`Gallery image ${i + 1}`}
-                        fill
-                        className="object-cover transition-all duration-700 group-hover:scale-110"
-                        sizes="(max-width: 768px) 50vw, (max-width: 1024px) 33vw, 25vw"
+                    {/* Enhanced glow effect on hover */}
+                    <motion.div
+                      className="absolute -inset-4 rounded-xl -z-10"
+                      style={{
+                        background: `radial-gradient(circle at 50% 50%, rgba(200, 200, 200, 0.3) 0%, transparent 70%)`,
+                        filter: 'blur(20px)',
+                      }}
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      whileHover={{
+                        opacity: 1,
+                        scale: 1.2,
+                        transition: { duration: 0.3, ease: "easeOut" }
+                      }}
+                    />
+
+                    {/* 16:9 aspect ratio for desktop, 4:3 for mobile */}
+                    <motion.div
+                      className="relative aspect-[4/3] md:aspect-video overflow-hidden rounded-lg"
+                      whileHover={{
+                        borderRadius: "16px",
+                        transition: { duration: 0.3 }
+                      }}
+                    >
+                      <motion.div
+                        whileHover={{
+                          scale: 1.15,
+                          rotate: [-0.5, 0.5, -0.3],
+                          transition: {
+                            type: "spring",
+                            stiffness: 300,
+                            damping: 20,
+                            rotate: { duration: 2, repeat: Infinity, repeatType: "reverse" }
+                          }
+                        }}
+                      >
+                        <Image
+                          src={`/gallery/${image}`}
+                          alt={`Gallery image ${i + 1}`}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
+                        />
+                      </motion.div>
+
+                      {/* Animated shimmer effect on hover */}
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                        initial={{ x: "-100%", opacity: 0 }}
+                        whileHover={{
+                          x: "100%",
+                          opacity: 1,
+                          transition: { duration: 0.6, ease: "easeInOut" }
+                        }}
                       />
 
                       {/* Dark gradient overlay on hover */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                      <motion.div
+                        className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+                        initial={{ opacity: 0 }}
+                        whileHover={{
+                          opacity: 1,
+                          transition: { duration: 0.3 }
+                        }}
+                      />
 
                       {/* View indicator on hover */}
-                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <div className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full">
+                      <motion.div
+                        className="absolute inset-0 flex items-center justify-center"
+                        initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                        whileHover={{
+                          opacity: 1,
+                          scale: 1,
+                          y: 0,
+                          transition: { duration: 0.3, delay: 0.1 }
+                        }}
+                      >
+                        <motion.div
+                          className="bg-black/80 backdrop-blur-sm px-4 py-2 rounded-full border border-white/20"
+                          whileHover={{
+                            scale: 1.1,
+                            backgroundColor: "rgba(0, 0, 0, 0.9)",
+                            borderColor: "rgba(255, 255, 255, 0.4)"
+                          }}
+                        >
                           <p className="text-white text-sm font-light tracking-wider">View</p>
-                        </div>
-                      </div>
-                    </div>
-
-                    {/* Enhanced glow effect on hover */}
-                    <motion.div
-                      className="absolute -inset-2 rounded-lg opacity-0 group-hover:opacity-100 -z-10"
-                      style={{
-                        background: `radial-gradient(circle at 50% 50%, rgba(184, 92, 44, 0.3) 0%, transparent 60%)`,
-                        filter: 'blur(20px)',
-                      }}
-                      transition={{ duration: 0.5 }}
-                    />
+                        </motion.div>
+                      </motion.div>
+                    </motion.div>
                   </motion.div>
                 ))}
               </div>
