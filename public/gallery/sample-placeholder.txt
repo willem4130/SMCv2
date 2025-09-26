@@ -1,0 +1,4 @@
+This is a placeholder file.
+Add your actual images (jpg, png, webp) to this folder.
+
+Then update the galleryImages array in src/app/page.tsx with your image filenames.
