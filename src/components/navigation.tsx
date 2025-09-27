@@ -42,7 +42,7 @@ export function Navigation() {
                   key={item.name}
                   href={item.href}
                   onClick={(e) => handleClick(e, item.href)}
-                  className="text-white/80 hover:text-white transition-all duration-500 text-base uppercase tracking-wider px-3 py-1 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+                  className="text-white/80 hover:text-white transition-all duration-500 text-base uppercase tracking-wider px-3 py-1 rounded-lg transform hover:scale-110"
                 >
                   {item.name}
                 </a>
@@ -56,19 +56,19 @@ export function Navigation() {
               href="https://www.facebook.com/SoftMadChildren"
               target="_blank"
               rel="noopener noreferrer"
-              className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+              className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
             >
               <Facebook className="h-6 w-6" />
             </a>
             <a
               href="#"
-              className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+              className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
             >
               <Instagram className="h-6 w-6" />
             </a>
             <a
               href="mailto:contact@softmadchildren.com"
-              className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm hover:shadow-lg hover:shadow-amber-900/20"
+              className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
             >
               <Mail className="h-6 w-6" />
             </a>
@@ -78,7 +78,7 @@ export function Navigation() {
           <div className="md:hidden">
             <button
               type="button"
-              className="text-white/60 hover:text-white/80 transition-opacity duration-300"
+              className="text-white/60 hover:text-white/80 transition-all duration-300 transform hover:scale-110"
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             >
               {mobileMenuOpen ? (
@@ -100,7 +100,7 @@ export function Navigation() {
                 key={item.name}
                 href={item.href}
                 onClick={(e) => handleClick(e, item.href)}
-                className="block text-white/80 hover:text-white transition-all duration-500 text-base uppercase tracking-wider px-3 py-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+                className="block text-white/80 hover:text-white transition-all duration-500 text-base uppercase tracking-wider px-3 py-2 rounded-lg transform hover:scale-105"
               >
                 {item.name}
               </a>
@@ -112,19 +112,19 @@ export function Navigation() {
                 href="https://www.facebook.com/SoftMadChildren"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+                className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
               >
                 <Facebook className="h-7 w-7" />
               </a>
               <a
                 href="#"
-                className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+                className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
               >
                 <Instagram className="h-7 w-7" />
               </a>
               <a
                 href="mailto:contact@softmadchildren.com"
-                className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg hover:bg-amber-900/20 hover:backdrop-blur-sm"
+                className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
               >
                 <Mail className="h-7 w-7" />
               </a>
