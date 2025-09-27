@@ -67,7 +67,7 @@ export function Navigation() {
               <Instagram className="h-6 w-6" />
             </a>
             <a
-              href="mailto:contact@softmadchildren.com"
+              href="mailto:willem@scex.nl"
               className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
             >
               <Mail className="h-6 w-6" />
@@ -123,7 +123,7 @@ export function Navigation() {
                 <Instagram className="h-7 w-7" />
               </a>
               <a
-                href="mailto:contact@softmadchildren.com"
+                href="mailto:willem@scex.nl"
                 className="text-white/80 hover:text-white transition-all duration-500 p-2 rounded-lg transform hover:scale-110"
               >
                 <Mail className="h-7 w-7" />

@@ -43,11 +43,10 @@ export default function Home() {
         {/* Background layers for parallax effect */}
         <div className="absolute inset-0">
           {/* Main forest background - slowly zooming */}
-          <motion.div 
+          <motion.div
             className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-back"
             style={{
               backgroundImage: 'url(/forest-scene.jpg)',
-              backgroundSize: '120%',
             }}
             initial={{ scale: 1 }}
             animate={{ scale: 1.15 }}
