@@ -518,7 +518,7 @@ export default function Home() {
             }}>
               About
             </h2>
-            <div className="space-y-8 text-white leading-relaxed font-bold" style={{
+            <div className="space-y-8 text-white leading-relaxed font-semibold" style={{
               textShadow: '0 2px 4px rgba(0, 0, 0, 0.9), 0 4px 8px rgba(0, 0, 0, 0.7)'
             }}>
               <p>
