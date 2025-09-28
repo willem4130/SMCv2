@@ -139,15 +139,19 @@ export default function Home() {
   return (
     <div className="bg-black">
       {/* Hero Section with Forest Background */}
-      <section id="home" className="relative min-h-screen overflow-hidden">
+      <section id="home" className="relative h-screen overflow-hidden">
         {/* Background layers for parallax effect */}
-        <div className="absolute inset-0">
+        <div className="absolute inset-0 w-full h-full">
           {/* Main forest background - slowly zooming */}
-          <motion.div 
-            className="absolute inset-0 bg-cover bg-center bg-no-repeat parallax-back"
+          <motion.div
+            className="absolute -inset-4 bg-cover bg-center bg-no-repeat parallax-back"
             style={{
               backgroundImage: 'url(/forest-scene.jpg)',
-              backgroundSize: '120%',
+              backgroundSize: 'cover',
+              width: 'calc(100% + 2rem)',
+              height: 'calc(100% + 2rem)',
+              left: '-1rem',
+              top: '-1rem',
             }}
             initial={{ scale: 1 }}
             animate={{ scale: 1.15 }}
@@ -155,9 +159,9 @@ export default function Home() {
           />
           
           {/* Fog overlay layers with movement */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-black/30 animate-fog" />
-          <div 
-            className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-transparent animate-fog" 
+          <div className="absolute -inset-4 bg-gradient-to-t from-black/60 via-transparent to-black/30 animate-fog" />
+          <div
+            className="absolute -inset-4 bg-gradient-to-b from-transparent via-black/20 to-transparent animate-fog"
             style={{ animationDelay: '30s', animationDuration: '120s' }}
           />
           
@@ -168,7 +172,7 @@ export default function Home() {
           
           {/* Enhanced mystical fog layers - larger, smoother waves */}
           <motion.div
-            className="absolute inset-0"
+            className="absolute -inset-8"
             style={{
               background: `radial-gradient(ellipse 800px 400px at 50% 50%, rgba(51, 65, 85, 0.4) 0%, transparent 70%)`,
               filter: 'blur(40px)',
@@ -186,7 +190,7 @@ export default function Home() {
             }}
           />
           <motion.div
-            className="absolute inset-0"
+            className="absolute -inset-8"
             style={{
               background: `radial-gradient(ellipse 1000px 500px at 30% 60%, rgba(67, 56, 202, 0.3) 0%, transparent 60%)`,
               filter: 'blur(60px)',
@@ -204,7 +208,7 @@ export default function Home() {
             }}
           />
           <motion.div
-            className="absolute inset-0"
+            className="absolute -inset-8"
             style={{
               background: `radial-gradient(ellipse 900px 450px at 70% 40%, rgba(88, 28, 135, 0.25) 0%, transparent 65%)`,
               filter: 'blur(50px)',
@@ -333,10 +337,10 @@ export default function Home() {
         </div>
         
         {/* Dark overlay for text readability */}
-        <div className="absolute inset-0 bg-black/40" />
+        <div className="absolute -inset-4 bg-black/40" />
         
         {/* Hero content */}
-        <div className="relative z-10 min-h-screen flex flex-col items-center justify-center">
+        <div className="relative z-10 h-screen flex flex-col items-center justify-center">
           <motion.div
             className="text-center"
             initial={{ opacity: 0, y: 30 }}

@@ -23,6 +23,8 @@ body {
   color: var(--foreground);
   font-family: var(--font-inter), Arial, Helvetica, sans-serif;
   overflow-x: hidden;
+  margin: 0;
+  padding: 0;
 }
 
 
@@ -367,6 +369,22 @@ body {
 /* Smooth scroll behavior */
 html {
   scroll-behavior: smooth;
+}
+
+/* Ensure proper mobile viewport handling */
+@media (max-width: 768px) {
+  #home {
+    height: 100vh;
+    height: 100dvh; /* Use dynamic viewport height on supported devices */
+  }
+
+  /* Ensure background extends beyond viewport edges on mobile */
+  #home .absolute.-inset-4,
+  #home .absolute.-inset-8 {
+    margin: -2rem;
+    width: calc(100% + 4rem);
+    height: calc(100% + 4rem);
+  }
 }
 
 /* Smooth section transitions with psychedelic effects */
