@@ -21,8 +21,8 @@ export default function AboutPage() {
             </h1>
           </motion.div>
 
-          <motion.div 
-            className="space-y-8 text-white/60 leading-relaxed"
+          <motion.div
+            className="space-y-8 text-white font-bold leading-relaxed"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
