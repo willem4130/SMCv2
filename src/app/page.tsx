@@ -1,9 +1,9 @@
 'use client'
 
-import { motion, AnimatePresence } from 'framer-motion'
+import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { ChevronDown, X, ChevronLeft, ChevronRight } from 'lucide-react'
 import Image from 'next/image'
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import VideoBackground from '@/components/VideoBackground'
 import useEmblaCarousel from 'embla-carousel-react'
 import Autoplay from 'embla-carousel-autoplay'
@@ -134,6 +134,46 @@ export default function Home() {
 
     setSelectedIndex(newIndex)
     setSelectedImage(`/gallery/${allImages[newIndex]}`)
+  }
+
+  // Scroll animation refs and triggers
+  const aboutRef = useRef(null)
+  const showsRef = useRef(null)
+  const galleryRef = useRef(null)
+
+  const aboutInView = useInView(aboutRef, { once: true, margin: "-20%" })
+  const showsInView = useInView(showsRef, { once: true, margin: "-20%" })
+  const galleryInView = useInView(galleryRef, { once: true, margin: "-20%" })
+
+  // Animation variants for consistent section transitions
+  const sectionVariants = {
+    hidden: {
+      opacity: 0,
+      y: 50,
+      scale: 0.95
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: {
+        duration: 0.8,
+        ease: [0.25, 0.46, 0.45, 0.94], // Custom easing for smooth feel
+        staggerChildren: 0.2
+      }
+    }
+  }
+
+  const childVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94]
+      }
+    }
   }
 
   return (
@@ -430,7 +470,14 @@ export default function Home() {
       </section>
 
       {/* About Section */}
-      <section id="about" className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden">
+      <motion.section
+        id="about"
+        ref={aboutRef}
+        className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={aboutInView ? "visible" : "hidden"}
+      >
         {/* Video Background */}
         <VideoBackground 
           videos={[
@@ -489,10 +536,17 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Shows Section - Misty Morning */}
-      <section id="shows" className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden">
+      <motion.section
+        id="shows"
+        ref={showsRef}
+        className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={showsInView ? "visible" : "hidden"}
+      >
         {/* Video Background */}
         <VideoBackground 
           videos={[
@@ -561,10 +615,17 @@ export default function Home() {
             </div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
       {/* Gallery Section - Multi-Row Carousel Layout */}
-      <section id="gallery" className="relative overflow-hidden pt-8 min-h-[85vh]">
+      <motion.section
+        id="gallery"
+        ref={galleryRef}
+        className="relative overflow-hidden pt-8 min-h-[85vh]"
+        variants={sectionVariants}
+        initial="hidden"
+        animate={galleryInView ? "visible" : "hidden"}
+      >
         {/* Much darker, more atmospheric background */}
         <div className="absolute inset-0 bg-gradient-to-b from-[#1A1A1A] via-[#2D1810] to-[#0F0F0F]"></div>
 
@@ -904,10 +965,10 @@ export default function Home() {
             </motion.div>
           </motion.div>
         </div>
-      </section>
+      </motion.section>
 
 
-      
+
       {/* Simple Clean Lightbox */}
       <AnimatePresence>
         {selectedImage && (
