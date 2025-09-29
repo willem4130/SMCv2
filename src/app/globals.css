@@ -40,6 +40,56 @@ body {
   text-shadow: 0 0 20px rgba(147, 197, 253, 0.5);
 }
 
+
+/* Performance optimizations for text animations */
+.blur-text-optimized {
+  /* GPU acceleration for smoother animations */
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000;
+  perspective: 1000;
+}
+
+/* Enhanced performance optimizations for scroll animations */
+.scroll-animation-optimized {
+  transform: translateZ(0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  will-change: transform, opacity;
+}
+
+.scroll-animation-optimized.animate-complete {
+  will-change: auto;
+}
+
+/* Smooth animation container */
+.animation-container {
+  contain: layout style paint;
+  transform: translateZ(0);
+}
+
+/* Reduce motion support for accessibility */
+@media (prefers-reduced-motion: reduce) {
+  .blur-text-optimized {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+
+  .blur-text-optimized * {
+    animation: none !important;
+    transition: opacity 0.3s ease !important;
+  }
+}
+
+/* Mobile-specific optimizations */
+@media (max-width: 767px) {
+  .blur-text-optimized {
+    /* Lighter effects on mobile for better performance */
+    filter: none !important;
+  }
+}
+
 /* Smooth button style */
 .minimal-button {
   background: transparent;
